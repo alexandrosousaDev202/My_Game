@@ -1,4 +1,5 @@
 import pygame
+import sys 
 from code.settings import *
 
 class Menu:
@@ -11,7 +12,6 @@ class Menu:
         
         self.background_rect = self.menu_background.get_rect()
         
-       
         pygame.mixer.music.load(os.path.join(diretorio_assets, 'Level1.mp3'))
         pygame.mixer.music.set_volume(0.4)
         pygame.mixer.music.play(loops=-1)
@@ -27,11 +27,10 @@ class Menu:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    quit()
+                    sys.exit() # <-- CORRIGIDO
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_RETURN:
-                        return "JOGAR" 
-            
+                        return "JOGAR"
             
             self.window.blit(self.menu_background, self.background_rect)
             self.desenhar_texto("Jogo de Nave", 64, LARGURA_TELA / 2, ALTURA_TELA / 4)
